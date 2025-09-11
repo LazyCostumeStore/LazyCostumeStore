@@ -107,7 +107,7 @@ export function Footer({menu, shop, seasonalTheme}: FooterProps) {
                 type="email"
                 placeholder="Enter your email"
                 className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded text-white placeholder-gray-400 focus:outline-none focus:border-primary"
-                style={{ '--tw-border-opacity': 1, borderColor: `${seasonalTheme.colors.primary}33` }}
+                style={{ borderColor: `${seasonalTheme.colors.primary}33` }}
               />
               <button
                 type="submit"

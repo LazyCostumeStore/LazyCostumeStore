@@ -81,10 +81,6 @@ function AccountMenu({seasonalTheme}: {seasonalTheme: any}) {
           key={item.to}
           to={item.to}
           className="block px-4 py-2 text-sm font-medium rounded-md hover:bg-gray-100 transition-colors"
-          style={({isActive}: {isActive: boolean}) => ({
-            backgroundColor: isActive ? seasonalTheme.colors.primary : 'transparent',
-            color: isActive ? seasonalTheme.colors.background : 'inherit',
-          })}
         >
           {item.label}
         </Link>

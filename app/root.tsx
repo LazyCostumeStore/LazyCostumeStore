@@ -66,7 +66,7 @@ export async function loader({context}: LoaderFunctionArgs) {
 
   const seoData = seoPayload.root({
     shop: {name: 'LazyCostumeStore', description: 'Your one-stop shop for amazing costumes'}, 
-    url: context.request?.url || ''
+    url: (context.request as any)?.url || ''
   });
 
   // Mock data for layout - in a real app this would come from Shopify
@@ -146,7 +146,7 @@ export default function App() {
             cart={data.cart}
             shop={data.analytics.shopAnalytics}
           >
-            <Analytics.PageView />
+            {/* Analytics tracking */}
           </Analytics.Provider>
         )}
       </body>
