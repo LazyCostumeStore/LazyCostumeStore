@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans antialiased;
+  }
+  
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
+  }
+}
+
+@layer components {
+  /* Button components */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-primary {
+    @apply btn bg-black text-white hover:bg-gray-800 focus:ring-black;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-white text-black border border-black hover:bg-gray-50 focus:ring-black;
+  }
+  
+  .btn-ghost {
+    @apply btn text-black hover:bg-gray-100 focus:ring-gray-500;
+  }
+  
+  /* Input components */
+  .input {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-black focus:border-black;
+  }
+  
+  /* Card components */
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden;
+  }
+  
+  .card-hover {
+    @apply card transition-shadow hover:shadow-md;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .container-fluid {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Seasonal theme utilities */
+  .theme-halloween {
+    --theme-primary: theme('colors.halloween.orange');
+    --theme-secondary: theme('colors.halloween.purple');
+    --theme-accent: theme('colors.halloween.gold');
+  }
+  
+  .theme-christmas {
+    --theme-primary: theme('colors.christmas.red');
+    --theme-secondary: theme('colors.christmas.green');
+    --theme-accent: theme('colors.christmas.gold');
+  }
+  
+  .theme-valentine {
+    --theme-primary: theme('colors.valentine.pink');
+    --theme-secondary: theme('colors.valentine.red');
+    --theme-accent: theme('colors.valentine.purple');
+  }
+  
+  .theme-easter {
+    --theme-primary: theme('colors.easter.pastelPink');
+    --theme-secondary: theme('colors.easter.pastelBlue');
+    --theme-accent: theme('colors.easter.pastelYellow');
+  }
+}
