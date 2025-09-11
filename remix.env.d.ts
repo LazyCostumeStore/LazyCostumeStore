@@ -19,14 +19,18 @@ declare global {
    * Declare expected Env parameter in fetch handler.
    */
   interface Env {
+    NODE_ENV: 'production' | 'development';
     SESSION_SECRET: string;
     PUBLIC_STOREFRONT_API_TOKEN: string;
     PRIVATE_STOREFRONT_API_TOKEN: string;
     PUBLIC_STORE_DOMAIN: string;
     PUBLIC_STOREFRONT_ID: string;
+    PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID: string;
+    PUBLIC_CUSTOMER_ACCOUNT_API_URL: string;
     PRINTFUL_API_TOKEN: string;
     PRINTFUL_WEBHOOK_SECRET: string;
     DATABASE_URL: string;
+    BULK_UPLOAD_API_KEY: string;
   }
 }
 

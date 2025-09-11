@@ -17,6 +17,9 @@ export type LayoutProps = {
   shop: {
     name: string;
     description: string;
+    primaryDomain?: {
+      url: string;
+    };
   };
 };
 

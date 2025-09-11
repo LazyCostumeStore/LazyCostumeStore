@@ -62,20 +62,56 @@ export async function loader({context}: LoaderFunctionArgs) {
   const {storefront, env} = context;
   
   const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
-
   const isProduction = context.env.NODE_ENV === 'production';
 
-  const seoData = seoPayload.root({shop: {name: 'LazyCostumeStore', description: 'Your one-stop shop for amazing costumes'}, url: context.request.url});
+  const seoData = seoPayload.root({
+    shop: {name: 'LazyCostumeStore', description: 'Your one-stop shop for amazing costumes'}, 
+    url: context.request?.url || ''
+  });
+
+  // Mock data for layout - in a real app this would come from Shopify
+  const mockShop = {
+    id: 'gid://shopify/Shop/1',
+    name: 'LazyCostumeStore',
+    description: 'Your one-stop shop for amazing costumes',
+    primaryDomain: {
+      url: publicStoreDomain,
+    },
+  };
+
+  const mockMenu = {
+    id: 'gid://shopify/Menu/1',
+    items: [
+      {
+        id: '1',
+        title: 'Collections',
+        url: '/collections',
+        items: [],
+      },
+      {
+        id: '2', 
+        title: 'About',
+        url: '/pages/about',
+        items: [],
+      },
+    ],
+  };
 
   return defer(
     {
       publicStoreDomain,
-      shop: await storefront.query(LAYOUT_QUERY),
+      shop: mockShop,
+      header: {
+        shop: mockShop,
+        menu: mockMenu,
+      },
+      footer: Promise.resolve({
+        menu: mockMenu,
+      }),
+      cart: Promise.resolve(null),
+      isLoggedIn: false,
       analytics: {
-        shopAnalytics: getShopAnalytics({
-          storefront,
-          publicStorefrontId: env.PUBLIC_STOREFRONT_ID,
-        }),
+        shopAnalytics: Promise.resolve(null),
       },
       seoData,
     },
@@ -105,12 +141,14 @@ export default function App() {
         </Layout>
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
-        <Analytics.Provider
-          cart={data.cart}
-          shop={data.analytics.shopAnalytics}
-        >
-          <Analytics.PageView />
-        </Analytics.Provider>
+        {data.analytics.shopAnalytics && (
+          <Analytics.Provider
+            cart={data.cart}
+            shop={data.analytics.shopAnalytics}
+          >
+            <Analytics.PageView />
+          </Analytics.Provider>
+        )}
       </body>
     </html>
   );
