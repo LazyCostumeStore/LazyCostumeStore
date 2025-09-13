@@ -17,6 +17,19 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
                 publicStoreDomain={publicStoreDomain}
               />
             )}
+            {/* Footer image: Replace the src with your Shopify Files URL or local public/ path */}
+            <img
+              src="https://cdn.shopify.com/s/files/your-footer-image.png" // <-- Replace with your actual Shopify Files URL
+              alt="Footer"
+              style={{ maxWidth: '100%', height: 'auto', margin: '2rem 0' }}
+            />
+
+            {/* Social links example */}
+            <div className="footer-social" style={{ marginTop: '1rem' }}>
+              <a href="https://instagram.com/yourbrand" target="_blank" rel="noopener noreferrer">Instagram</a> |
+              <a href="https://tiktok.com/@yourbrand" target="_blank" rel="noopener noreferrer">TikTok</a> |
+              <a href="mailto:hello@lazycostumeshop.com">Email</a>
+            </div>
           </footer>
         )}
       </Await>
