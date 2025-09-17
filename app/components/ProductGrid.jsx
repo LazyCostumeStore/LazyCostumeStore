@@ -1,5 +1,6 @@
 import React from 'react';
-import {ProductProvider, Link, Image, Money} from '@shopify/hydrogen';
+import {Image, Money} from '@shopify/hydrogen';
+import {Link} from 'react-router';
 
 export default function ProductGrid({products}) {
   return (

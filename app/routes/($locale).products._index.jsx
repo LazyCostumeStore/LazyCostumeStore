@@ -1,9 +1,7 @@
 import {useLoaderData} from 'react-router';
-import {gql} from 'graphql-tag';
 import ProductGrid from '~/components/ProductGrid';
-import {useShopQuery, flattenConnection} from '@shopify/hydrogen';
 
-const PRODUCTS_QUERY = gql`
+const PRODUCTS_QUERY = `#graphql
   query Products($first: Int = 12, $country: CountryCode, $language: LanguageCode)
   @inContext(country: $country, language: $language) {
     products(first: $first) {
@@ -29,26 +27,26 @@ const PRODUCTS_QUERY = gql`
   }
 `;
 
-export async function loader({request}) {
-  // The app load context in this project already creates a storefront client
-  const {storefront} = await import('~/lib/context'); // or use createAppLoadContext
-  // But Hydrogen helper useShopQuery runs on server within components; use loader to pass props
-  return null;
-}
+/** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
 
-// Simple client component using useShopQuery
-export default function ProductsIndex() {
-  const {data} = useShopQuery({
-    query: PRODUCTS_QUERY,
+export async function loader({context}) {
+  // Query products on the server using the provided storefront client
+  const {products} = await context.storefront.query(PRODUCTS_QUERY, {
     variables: {first: 12},
   });
 
-  const products = data?.products?.nodes ?? [];
+  return {products};
+}
+
+export default function ProductsIndex() {
+  const {products} = useLoaderData();
+
+  const nodes = products?.nodes ?? [];
 
   return (
     <main>
       <h1>All Products</h1>
-      <ProductGrid products={products} />
+      <ProductGrid products={nodes} />
     </main>
   );
 }
