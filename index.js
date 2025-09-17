@@ -1,9 +1,3 @@
-// Minimal entry wrapper for Oxygen deployments
-// This file ensures the platform finds an `index.js` entry when uploading.
-try {
-  module.exports = require('./dist/server/index.js');
-} catch (e) {
-  // If the server bundle isn't built yet, provide a helpful error.
-  console.error('Could not load server bundle at ./dist/server/index.js. Run `npm run build` first.');
-  throw e;
-}
+import{createServer as n}from"node:http";const o=n((t,e)=>{e.writeHead(200,{"Content-Type":"text/plain"}),e.end(`Hello World!
+`)});o.listen(3e3,"127.0.0.1",()=>{console.log("Listening on 127.0.0.1:3000")});
+//# sourceMappingURL=index.js.map
