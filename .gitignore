@@ -1,6 +1,8 @@
 node_modules
 /.cache
 /build
+.vscode/
+tailwindcss-*.log
 /dist
 !dist/server/index.js
 /public/build
