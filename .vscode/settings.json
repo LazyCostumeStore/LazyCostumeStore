@@ -1,0 +1,14 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        ".eslintrc",
+        ".eslintrc.json",
+        ".eslintrc.cjs",
+        ".eslintrc.js"
+      ],
+      "url": "${workspaceFolder}/.vscode/schemas/eslintrc.json"
+    }
+  ],
+  "json.schemaDownload.enable": false
+}
